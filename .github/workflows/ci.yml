@@ -1,7 +1,9 @@
 name: CI
 on:
   push:
+    branches: ['main']
   pull_request:
+    branches: ['main']
 jobs:
   check:
     name: Rust CI (fmt, clippy, test, audit)
@@ -16,6 +18,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
+      - name: Cache Rust build
+        uses: Swatinem/rust-cache@v2
         with:
           toolchain: ${{ matrix.rust }}
           profile: minimal
@@ -28,5 +32,7 @@ jobs:
         run: cargo clippy --workspace --all-targets -- -D warnings
       - name: Run tests
         run: cargo test --workspace --all-targets
-      - name: Cargo audit
+      - name: Run cargo audit
         uses: actions-rs/audit-check@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
