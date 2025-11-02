@@ -49,7 +49,10 @@ async fn main() -> anyhow::Result<()> {
             margin_type,
         } => {
             println!("Following agent: {}", agent);
-            println!("interval: {}s, price_tolerance: {}%, total_margin: {}, risk_only: {}, margin_type: {:?}", interval, price_tolerance, total_margin, risk_only, margin_type);
+            println!(
+                "interval: {}s, price_tolerance: {}%, total_margin: {}, risk_only: {}, margin_type: {:?}",
+                interval, price_tolerance, total_margin, risk_only, margin_type
+            );
             // TODO: wire to FollowService in services crate
         }
         Commands::Profit => {

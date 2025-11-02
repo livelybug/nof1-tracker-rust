@@ -20,6 +20,8 @@ jobs:
           toolchain: ${{ matrix.rust }}
           profile: minimal
           components: clippy, rustfmt
+      - name: Rustfmt
+        run: cargo fmt --all
       - name: Rustfmt check
         run: cargo fmt --all -- --check
       - name: Clippy lint
