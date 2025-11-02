@@ -1,0 +1,20 @@
+{
+  "name": "nof1-tracker-rust-devcontainer",
+  "dockerFile": "Dockerfile",
+  "context": ".",
+  "workspaceFolder": "/app",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "rust-analyzer.cargo.features": "all",
+        "rust-analyzer.checkOnSave.command": "clippy"
+      },
+      "extensions": [
+        "rust-lang.rust-analyzer",
+        "serayuzgur.crates"
+      ]
+    }
+  },
+  "forwardPorts": [],
+  "postCreateCommand": "cargo build --release"
+}
