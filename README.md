@@ -45,6 +45,17 @@ cargo test --all
 cargo fmt --all
 cargo clippy --all --all-targets
 ```
+### 5. Run cargo audit
+```bash
+# Install cargo-audit
+cargo install cargo-audit
+
+# Optional: Update the advisory database 
+cargo audit update
+
+# Run the audit in your Rust project folder
+cargo audit
+```
 
 ## 📁 Workspace Structure
 
@@ -62,4 +73,3 @@ cargo clippy --all --all-targets
 - Do not commit API keys or secrets to the repository.
 
 ---
-If you need additional usage examples or environment setup instructions, please request them.
