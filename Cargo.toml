@@ -1,0 +1,21 @@
+[workspace]
+members = [
+  "cli",
+  "core_service",
+  "services",
+  "storage",
+]
+
+[workspace.dependencies]
+# Shared third-party deps
+anyhow = "1.0"
+async-trait = "0.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "fs", "rt"] }
+tracing = "0.1"
+
+# internal crates
+core_service = { path = "core_service" }
+services = { path = "services" }
+storage = { path = "storage" }
