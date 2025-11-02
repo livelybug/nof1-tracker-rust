@@ -40,14 +40,20 @@ pub trait Storage: Send + Sync {
 #[async_trait]
 impl Storage for FileStorage {
     async fn save_follow_state(&self, state: &FollowState) -> Result<()> {
-        let path = self.base_path.join("follow-state").join(format!("{}-{}.json", state.agent, state.symbol));
+        let path = self
+            .base_path
+            .join("follow-state")
+            .join(format!("{}-{}.json", state.agent, state.symbol));
         let s = serde_json::to_string_pretty(state)?;
         self.atomic_write(&path, &s).await?;
         Ok(())
     }
 
     async fn save_trade_record(&self, record: &TradeRecord) -> Result<()> {
-        let path = self.base_path.join("trade-records").join(format!("{}.json", record.trade_id));
+        let path = self
+            .base_path
+            .join("trade-records")
+            .join(format!("{}.json", record.trade_id));
         let s = serde_json::to_string_pretty(record)?;
         self.atomic_write(&path, &s).await?;
         Ok(())

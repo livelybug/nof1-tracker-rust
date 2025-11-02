@@ -1,5 +1,5 @@
-use async_trait::async_trait;
 use anyhow::Result;
+use async_trait::async_trait;
 use core_service::{AgentSignal, Position};
 use serde_json::Value;
 
@@ -33,7 +33,14 @@ pub struct ExchangeInfo {
 pub trait BinanceClient: Send + Sync {
     async fn get_positions(&self) -> Result<Vec<Position>>;
     async fn get_open_orders(&self) -> Result<Vec<OpenOrder>>;
-    async fn place_limit_order(&self, symbol: &str, side: &str, price: f64, qty: f64, reduce_only: bool) -> Result<String>;
+    async fn place_limit_order(
+        &self,
+        symbol: &str,
+        side: &str,
+        price: f64,
+        qty: f64,
+        reduce_only: bool,
+    ) -> Result<String>;
     async fn cancel_order(&self, symbol: &str, order_id: &str) -> Result<()>;
     async fn set_margin_type(&self, symbol: &str, margin_type: &str) -> Result<()>;
     async fn set_leverage(&self, symbol: &str, leverage: u32) -> Result<()>;
