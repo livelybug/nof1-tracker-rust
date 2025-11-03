@@ -1,6 +1,12 @@
 use clap::{Parser, Subcommand};
 use tracing_subscriber::fmt::format::FmtSpan;
-
+mod commands {
+    pub mod agents;
+    pub mod follow;
+    pub mod profit;
+    pub mod status;
+    pub mod telegram;
+}
 #[derive(Parser)]
 #[command(name = "nof1-trade")]
 struct Cli {
@@ -38,7 +44,7 @@ async fn main() -> anyhow::Result<()> {
 
     match cli.command {
         Commands::Agents => {
-            println!("Agents command (stub)");
+            commands::agents::run_agents_command();
         }
         Commands::Follow {
             agent,
@@ -48,18 +54,13 @@ async fn main() -> anyhow::Result<()> {
             risk_only,
             margin_type,
         } => {
-            println!("Following agent: {}", agent);
-            println!(
-                "interval: {}s, price_tolerance: {}%, total_margin: {}, risk_only: {}, margin_type: {:?}",
-                interval, price_tolerance, total_margin, risk_only, margin_type
-            );
-            // TODO: wire to FollowService in services crate
+            commands::follow::run_follow_command();
         }
         Commands::Profit => {
-            println!("Profit command (stub)");
+            commands::profit::run_profit_command();
         }
         Commands::Status => {
-            println!("Status command (stub)");
+            commands::status::run_status_command();
         }
     }
 

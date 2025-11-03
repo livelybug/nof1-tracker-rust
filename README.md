@@ -1,6 +1,6 @@
 # nof1-tracker-rust
 
-This is the Rust implementation of the Nof1 AI Agent follow-trading CLI tool.
+This is the Rust implementation of the [Nof1 AI Agent follow-trading CLI](https://github.com/terryso/nof1-tracker).
 
 ## 🚀 Quick Start
 
@@ -57,6 +57,28 @@ cargo audit update
 cargo audit
 ```
 
+
+## 🐳 Run in Docker
+
+Build and run the CLI in a container:
+
+```bash
+docker build -f .devcontainer/Dockerfile -t nof1-cli .
+docker run --rm nof1-cli agents
+```
+
+Replace `agents` with any CLI command as needed.
+
+## 🧑‍💻 VS Code Devcontainer
+
+To develop in a fully configured environment:
+
+1. Open the project folder in VS Code.
+2. If prompted, "Reopen in Container" (or use the Command Palette: "Dev Containers: Reopen in Container").
+3. The devcontainer will build and set up Rust tools automatically.
+4. You can run, build, and test as usual inside the container.
+
+
 ## 📁 Workspace Structure
 
 - `cli/` - Command-line interface crate
@@ -67,7 +89,6 @@ cargo audit
 
 ## 📝 Notes
 
-- All workspace code lives under `nof1-tracker-rust/`.
 - Example commands above use stub implementations; full business logic will be added in later epics.
 - Configuration is loaded from environment variables and/or TOML files (to be implemented).
 - Do not commit API keys or secrets to the repository.
